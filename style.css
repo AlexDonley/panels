@@ -55,7 +55,8 @@ textarea {
     background-size:     cover;
     background-repeat:   no-repeat;
     background-position: center center;
-    box-shadow: 10px 0 10px -5px #000000 inset;
+    box-shadow: -10px 0 10px -5px #000000 inset;
+    position: relative;
 }
 
 .one-word {
@@ -98,11 +99,14 @@ textarea {
 } */
 
 .score-keep {
-    height: 30vh;
+    margin-top: auto;
     display: flex;
     text-align: center;
     font-size: 4vw;
     flex-direction: column;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
 }
 
 .suggest-box {
@@ -185,7 +189,7 @@ textarea {
 
 .team-bar {
     position: absolute;
-    bottom: 0;
+    bottom: 10vw;
     display: flex;
     align-items: bottom;
 }
