@@ -8,17 +8,23 @@ const suggestBox = document.getElementById('suggestBox')
 
 const userPickTeams = document.getElementById('userPickTeams')
 const userPickGrid = document.getElementById('userPickGrid')
-const userPickWords = document.getElementById('userPickWords')
+const userPickList = document.getElementById('userPickList')
+// const userPickWords = document.getElementById('userPickWords')
 const optionsMenu = document.getElementById('optionsMenu')
 
 const spacing = "1fr "
 
-let sicknesses = ["the measles", "the mumps", "a gash", "a rash", 
+let sickness = ["the measles", "the mumps", "a gash", "a rash", 
                 "purple bumps", "instamatic flu", "a cold", "a fever",
                 "a stomach ache", "a runny nose", "a cough", "a sore throat",
                 "chicken pox", "an ear infection", "a virus", "covid-19"]
-let halloween = [""]
-let wordlist = sicknesses
+let halloween = ["superhero", "monster", "princess", "pirate",
+                "astronaut", "what about you", "think", "like",
+                "love", "favorite", "holiday", "going to",
+                "Halloween", "costume", "excited", "trick or treat"]
+
+let listList = [sickness, halloween]
+let wordlist = halloween.slice()
 boardQueue = []
 unspoken = []
 
@@ -43,7 +49,7 @@ let listenBool = false
 function populateGameBoard(arr) {
     gameBoard.innerHTML = ''
     boardQueue = []
-    unspoken = []
+    unspoken = arr
     teamSquares = []
     
     gameBoard.style.gridTemplateRows = spacing.repeat(boardHeight)
@@ -60,9 +66,9 @@ function populateGameBoard(arr) {
     }
 
     for (let n = 0; n < totalTiles; n++) {
-        if (!unspoken.includes(boardQueue[n])) {
-            unspoken.push(boardQueue[n])
-        }
+        // if (!unspoken.includes(boardQueue[n])) {
+        //     unspoken.push(boardQueue[n])
+        // }
         
         newWord = document.createElement('div')
         newWord.classList += 'one-word shiny'
@@ -166,7 +172,7 @@ function checkBoard(str, team){
     
     console.log(unspoken)
 
-    checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight))
+    checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team)
 }
 
 function toggleRec() {
@@ -184,37 +190,21 @@ function toggleRec() {
 }
 
 function nextTeam() {
-    prevTeam = document.querySelector(".highlighted")
-    
-    if (prevTeam) {
-        // if one team is highlighted, pushes the turn to the next team
-        prevTeam.classList.remove('highlighted')
 
-        if (turn < teamCount) {
-            turn++
-        } else {
-            turn = 1
-        }
-
-      newTeam = teamBar.children[turn - 1].children[0]
+    if (turn < teamCount) {
+        turn++
     } else {
-        // sets the highlighted team to team 1 (red) if none is highlighted
-        newTeam = teamBar.children[0].children[0]
+        turn = 1
     }
-    newTeam.classList.add('highlighted')
+
+    teamBar.children[0].style.fill = teamColors[turn - 1]
+
+    console.log("next team")
 }
 
 function populateTeams(numOfTeams) {
-    teamBar.innerHTML = ''
 
     for (let n=0; n<numOfTeams; n++) {
-        let teamIcon = document.createElement('div') 
-        teamIcon.innerHTML = 
-        '<svg class="team-member" viewBox="5 5 22 22" preserveAspectRatio="none" fill="' + teamColors[n] + '">' +
-            '<path d="M16 15.503A5.041 5.041 0 1 0 16 5.42a5.041 5.041 0 0 0 0 10.083zm0 2.215c-6.703 0-11 3.699-11 5.5v3.363h22v-3.363c0-2.178-4.068-5.5-11-5.5z"/>'+
-        '</svg>'
-
-        teamBar.append(teamIcon)
         
         let teamScoreBar = document.createElement('div')
         teamScoreBar.innerText = scoreArr[n]
@@ -309,9 +299,13 @@ function checkForLineup(arr, w, h, n, team) {
         }
     }; 
 
-    if (unspoken.length > 0 && winningLines.length > 0) {
-        renewSquares(winningLines)
-        scoreArr[team] += 100 * winningLines.length
+    if (winningLines.length > 0) {
+        if (unspoken.length > 0) {
+            renewSquares(winningLines)
+            scoreArr[team] += 100 * winningLines.length
+        } else {
+            // populateGameBoard(wordlist)
+        }
     }
     
     // console.log(winningLines)
@@ -338,6 +332,8 @@ function renewSquares(arr) {
 }
 
 function startRound() {
+
+    wordlist = listList[userPickList.value]
 
     teamCount = userPickTeams.value
     boardWidth = userPickGrid.value
