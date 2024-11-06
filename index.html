@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2F4YZQ0DV"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-L2F4YZQ0DV');
+    </script>
+    <meta charset="UTF-8">
+    <meta name="description" content="Practice English speech live in your classroom!">
+    <meta name="keywords" content="speaking, phrase, English, ESL, vocabulary, language learning">
+    <meta name="author" content="Alex Donley">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>Document</title>
+</head>
+<body>
+    <div class="menu" id="optionsMenu">
+        <label for="userPickTeams">Number of Teams:</label>
+        <input type="number" min=1 max=4 value="2" id="userPickTeams"/>
+        <br>
+        <label for="userPickGrid">Square Grid:</label>
+        <input type="number" min=3 max=6 value="4" id="userPickGrid"/>
+        <br>
+        <div>Words:</div>
+        <textarea id="userPickWords"/></textarea>
+        <br>
+        <button onclick="startRound()">GO</button>
+    </div>
+    
+    <div class="game-board" id="gameBoard">
+
+    </div>
+    <div class="side-bar">
+        <!-- <div class="user-input">
+            <textarea class="user-text">enter text here</textarea>
+        </div> -->
+        <div class="score-keep" id="scoreKeep">
+
+        </div>
+        <div class="suggest-box shiny" id="suggestBox">
+
+        </div>
+        <div class="speech-bubble triangle shiny">
+            <button class="toggle-speech-button" id="micButton" onclick="toggleRec()">
+                <span class="material-symbols-outlined">
+                    mic
+                </span>
+                <span class="material-symbols-outlined" id="micIcon">
+                    radio_button_unchecked
+                </span>
+            </button>
+            <div class="speech-log" id="speechLog">
+            
+            </div>
+        </div>
+
+        <div class="team-bar" id="teamBar">
+
+        </div>
+    </div>
+</body>
+</html>
