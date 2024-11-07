@@ -145,7 +145,7 @@ textarea {
     color: black;
     background: white;
     font-weight: bold;
-    height: 40vh;
+    height: 50vh;
     margin: 10px;
     border-radius: 10px;
     font-size: 2rem;
@@ -153,13 +153,29 @@ textarea {
     position: relative;
     display: flex;
     flex-direction: column;
+    overflow-x: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+.speech-bubble::-webkit-scrollbar {
+    display: none;
+}
+
+.speech-now {
+    padding: 10px;
 }
 
 .speech-log{
-    padding: 10px
+    padding: 10px;
+    font-size: 1rem;
 }
 
-.triangle:before {
+.one-log {
+    padding: 10px;
+    border-top:    1px solid  rgb(124, 124, 124);
+}
+
+/* .triangle:before {
     content: "";
     width: 20px;
     height: 20px;
@@ -168,7 +184,7 @@ textarea {
     left: 7vw;
     bottom: -19px;
     clip-path: polygon(0% 0%, 100% 0%, 50% 100%)
-}
+} */
 
 .blue {
     background: blue;
@@ -185,6 +201,19 @@ textarea {
 .green {
     background: green;
     color: white;
+}
+
+.text-blue {
+    color: blue;
+}
+.text-red {
+    color: red;
+}
+.text-yellow {
+    color: orange;
+}
+.text-green {
+    color: green;
 }
 
 .team-bar {
@@ -207,4 +236,8 @@ svg {
 .team-member.highlighted {
     transform: translateY(0);
     height: 5vw;
+}
+
+.shadow {
+    filter: drop-shadow(0 0 0.3rem white);
 }

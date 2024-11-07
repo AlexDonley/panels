@@ -1,5 +1,6 @@
 const gameBoard = document.getElementById('gameBoard')
 const speechLog = document.getElementById('speechLog')
+const speechNow = document.getElementById('speechNow')
 const micButton = document.getElementById('micButton')
 const micIcon = document.getElementById('micIcon')
 const teamBar = document.getElementById('teamBar')
@@ -11,6 +12,9 @@ const userPickGrid = document.getElementById('userPickGrid')
 const userPickList = document.getElementById('userPickList')
 // const userPickWords = document.getElementById('userPickWords')
 const optionsMenu = document.getElementById('optionsMenu')
+
+const smallWin = new Audio("./sfx/oneup.mp3")
+const bigWin = new Audio("./sfx/copyability.mp3")
 
 const spacing = "1fr "
 
@@ -24,7 +28,7 @@ let halloween = ["superhero", "monster", "princess", "pirate",
                 "Halloween", "costume", "excited", "trick or treat"]
 
 let listList = [sickness, halloween]
-let wordlist = halloween.slice()
+let wordlist = []
 boardQueue = []
 unspoken = []
 
@@ -122,13 +126,24 @@ recognition.addEventListener("result", (e) => {
         .map((result) => result.transcript)
         .join("");
 
+    
+
     speaklist = text.split(' ')
 
-    speechLog.innerHTML = ""
-    speechLog.innerText = text;
+    speechNow.innerHTML = ""
+    speechNow.innerText = text
 
     if (e.results[0].isFinal) {
-        checkBoard(text, turn);
+        logDiv = document.createElement('div')
+        logDiv.classList.add("one-log")
+        logDiv.classList.add("text-" + teamColors[turn - 1])
+        logDiv.innerText = text
+
+        speechNow.innerHTML = ""
+
+        speechLog.prepend(logDiv)
+        
+        checkBoard(text, turn)
         nextTeam()
     }
 });
@@ -300,11 +315,16 @@ function checkForLineup(arr, w, h, n, team) {
     }; 
 
     if (winningLines.length > 0) {
+        scoreArr[team - 1] += 100 * winningLines.length
+        scoreKeep.children[team - 1].innerText = scoreArr[team - 1]
+
+        bigWin.play()
+        
         if (unspoken.length > 0) {
             renewSquares(winningLines)
-            scoreArr[team] += 100 * winningLines.length
         } else {
-            // populateGameBoard(wordlist)
+            wordlist = [...listList[userPickList.value]]
+            populateGameBoard(wordlist)
         }
     }
     
@@ -333,7 +353,7 @@ function renewSquares(arr) {
 
 function startRound() {
 
-    wordlist = listList[userPickList.value]
+    wordlist = [...listList[userPickList.value]]
 
     teamCount = userPickTeams.value
     boardWidth = userPickGrid.value
