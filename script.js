@@ -13,8 +13,13 @@ const userPickList = document.getElementById('userPickList')
 // const userPickWords = document.getElementById('userPickWords')
 const optionsMenu = document.getElementById('optionsMenu')
 
-const smallWin = new Audio("./sfx/oneup.mp3")
+const smallWin = new Audio("./sfx/success.mp3")
 const bigWin = new Audio("./sfx/copyability.mp3")
+const boardWin = new Audio("./sfx/yo2.mp3")
+
+smallWin.volume = 0.45
+bigWin.volume = 0.45
+boardWin.volume = 0.4
 
 const spacing = "1fr "
 
@@ -26,13 +31,17 @@ let halloween = ["superhero", "monster", "princess", "pirate",
                 "astronaut", "what about you", "think", "like",
                 "love", "favorite", "holiday", "going to",
                 "Halloween", "costume", "excited", "trick or treat"]
+let animals1 = ["elephant", "giraffe", "lion", "camel", "snake", "monkey", "frog", "puppy"]
+let animals2 = ["bear", "bird", "duck", "horse", "cat", "dog", "sheep", "goldfish", 
+                "elephant", "giraffe", "lion", "camel", "snake", "monkey", "frog", "puppy"]
+let adjectives = ["big", "tall", "fierce", "grumpy", "scary", "naughty", "jumpy", "perfect"]
 
-let listList = [sickness, halloween]
+let listList = [sickness, halloween, animals1, animals2, adjectives]
 let wordlist = []
 boardQueue = []
 unspoken = []
 
-let suggestedSentences = ["I have", "Do you have"]
+let suggestedSentences = ["I have", "Do you have", "I see a", "So they sent me a", "He was too"]
 let sentencePicker = 0
 
 const teamColors = ['red', 'blue', 'yellow', 'green']
@@ -161,7 +170,7 @@ function checkBoard(str, team){
     multiplier = 1;
     markWord = ""
 
-    if (str.includes(suggestedSentences[sentencePicker].toLowerCase())) {
+    if (str.toLowerCase().includes(suggestedSentences[sentencePicker].toLowerCase())) {
         multiplier = 2
     }
 
@@ -185,9 +194,9 @@ function checkBoard(str, team){
         unspoken.splice(index, 1);
     }
     
-    console.log(unspoken)
+    // console.log(unspoken)
 
-    checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team)
+    checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team, markWord)
 }
 
 function toggleRec() {
@@ -230,17 +239,26 @@ function populateTeams(numOfTeams) {
     }
 }
 
+function nextSentence() {
+    if (sentencePicker < suggestedSentences.length - 1) {
+        sentencePicker ++
+    } else {
+        sentencePicker = 0
+    }
+    setSuggestedSentence(sentencePicker)
+}
+
 function setSuggestedSentence(n) {
-    sentencePicker = n
 
     sentWrap = document.createElement('div')
     sentWrap.classList.add('sentence-center')
     sentWrap.innerText = suggestedSentences[n] + "..."
 
+    suggestBox.innerHTML = ''
     suggestBox.append(sentWrap)
 }
 
-function checkForLineup(arr, w, h, n, team) {
+function checkForLineup(arr, w, h, n, team, correctBool) {
     
     winningLines = []
 
@@ -323,9 +341,25 @@ function checkForLineup(arr, w, h, n, team) {
         if (unspoken.length > 0) {
             renewSquares(winningLines)
         } else {
+            boardWin.play()
+            
             wordlist = [...listList[userPickList.value]]
             populateGameBoard(wordlist)
         }
+    } else if (correctBool) {
+        smallWin.play()
+    } 
+
+    if (!teamSquares.includes(null)) {
+        boardWin.play()
+        
+        let fullArr = []
+
+        for (let i=0; i<teamSquares.length; i++) {
+            fullArr.push(i)
+        }
+
+        renewSquares(fullArr)
     }
     
     // console.log(winningLines)
