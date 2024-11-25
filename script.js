@@ -406,7 +406,7 @@ function renewSquares(arr) {
 
 function startRound() {
 
-    wordlist = fullWordlist[userPickList.value].words
+    wordlist = [...fullWordlist[userPickList.value].words]
     suggestedSentences = fullWordlist[userPickList.value].sentences
 
     teamCount = userPickTeams.value
