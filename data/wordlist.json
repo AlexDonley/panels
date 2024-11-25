@@ -1,0 +1,56 @@
+[
+    {
+        "title": "Halloween",
+        "words": [
+            "superhero", "monster", "princess", "pirate",
+            "astronaut", "what about you", "think", "like",
+            "love", "favorite", "holiday", "going to",
+            "Halloween", "costume", "excited", "trick or treat"
+                ],
+        "sentences": [
+            "You can be a"
+        ]
+    },
+    {
+        "title": "Silverstein - Sick",
+        "words": [
+            "the measles", "the mumps", "a gash", "a rash", 
+            "purple bumps", "instamatic flu", "a cold", "a fever",
+            "a stomach ache", "a runny nose", "a cough", "a sore throat",
+            "chicken pox", "an ear infection", "a virus", "covid-19"
+                ],
+        "sentences": [
+            "I have", "Do you have", "Does she have", "Does he have"
+        ]
+    },
+    {
+        "title": "Dear Zoo - Animals",
+        "words": [
+            "elephant", "giraffe", "lion", "camel", 
+            "snake", "monkey", "frog", "puppy"
+                ],
+        "sentences": [
+            "So they sent me a"
+        ]
+    },
+    {
+        "title": "Dear Zoo - Adjectives",
+        "words": [
+            "big", "tall", "fierce", "grumpy", "scary", "naughty", "jumpy", "perfect"
+                ],
+        "sentences": [
+            "He was too", "She was too", "You're too"
+        ]
+    },
+    {
+        "title": "Brown Bear - Animals",
+        "words": [
+            "bear", "bird", "duck", 
+            "horse", "cat", "dog", 
+            "frog", "sheep", "goldfish"
+                ],
+        "sentences": [
+            "I see a", "looking at me"
+        ]
+    }
+]

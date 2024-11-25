@@ -10,7 +10,6 @@ const suggestBox = document.getElementById('suggestBox')
 const userPickTeams = document.getElementById('userPickTeams')
 const userPickGrid = document.getElementById('userPickGrid')
 const userPickList = document.getElementById('userPickList')
-// const userPickWords = document.getElementById('userPickWords')
 const optionsMenu = document.getElementById('optionsMenu')
 
 const smallWin = new Audio("./sfx/success.mp3")
@@ -23,25 +22,11 @@ boardWin.volume = 0.4
 
 const spacing = "1fr "
 
-let sickness = ["the measles", "the mumps", "a gash", "a rash", 
-                "purple bumps", "instamatic flu", "a cold", "a fever",
-                "a stomach ache", "a runny nose", "a cough", "a sore throat",
-                "chicken pox", "an ear infection", "a virus", "covid-19"]
-let halloween = ["superhero", "monster", "princess", "pirate",
-                "astronaut", "what about you", "think", "like",
-                "love", "favorite", "holiday", "going to",
-                "Halloween", "costume", "excited", "trick or treat"]
-let animals1 = ["elephant", "giraffe", "lion", "camel", "snake", "monkey", "frog", "puppy"]
-let animals2 = ["bear", "bird", "duck", "horse", "cat", "dog", "sheep", "goldfish", 
-                "elephant", "giraffe", "lion", "camel", "snake", "monkey", "frog", "puppy"]
-let adjectives = ["big", "tall", "fierce", "grumpy", "scary", "naughty", "jumpy", "perfect"]
-
-let listList = [sickness, halloween, animals1, animals2, adjectives]
 let wordlist = []
-boardQueue = []
-unspoken = []
+let boardQueue = []
+let unspoken = []
 
-let suggestedSentences = ["I have", "Do you have", "I see a", "So they sent me a", "He was too"]
+let suggestedSentences = []
 let sentencePicker = 0
 
 const teamColors = ['red', 'blue', 'yellow', 'green']
@@ -58,6 +43,29 @@ let boardHeight = 4
 let totalTiles
 
 let listenBool = false
+
+let fullWordlist
+
+function loadJSON(filename){
+    fetch('./data/' + filename + '.json')
+    .then(res => {
+        if (res.ok) {
+            console.log('SUCCESS');
+        } else {
+            console.log('FAILURE')
+        }
+        return res.json()
+    })
+    .then(data => {
+        fullWordlist = data;
+
+        populateWordOptions()
+        //example = fullWordlist.findIndex(item => item.title === "Halloween")
+    })
+    .catch(error => console.log('ERROR'))
+}
+
+loadJSON('wordlist');
 
 function populateGameBoard(arr) {
     gameBoard.innerHTML = ''
@@ -85,7 +93,6 @@ function populateGameBoard(arr) {
         
         newWord = document.createElement('div')
         newWord.classList += 'one-word shiny'
-        
 
         wordWrap = document.createElement('div')
         wordWrap.innerText = boardQueue[n]
@@ -96,6 +103,18 @@ function populateGameBoard(arr) {
         gameBoard.append(newWord)
 
         teamSquares.push(null)
+    }
+}
+
+function populateWordOptions() {
+    userPickList.innerHTML = ''
+
+    for (let i=0; i<fullWordlist.length; i++) {
+        let newOption = document.createElement('option')
+        newOption.innerText = fullWordlist[i].title
+        newOption.value = i
+
+        userPickList.append(newOption)
     }
 }
 
@@ -387,7 +406,8 @@ function renewSquares(arr) {
 
 function startRound() {
 
-    wordlist = [...listList[userPickList.value]]
+    wordlist = fullWordlist[userPickList.value].words
+    suggestedSentences = fullWordlist[userPickList.value].sentences
 
     teamCount = userPickTeams.value
     boardWidth = userPickGrid.value
