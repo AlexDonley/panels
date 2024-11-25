@@ -362,7 +362,7 @@ function checkForLineup(arr, w, h, n, team, correctBool) {
         } else {
             boardWin.play()
             
-            wordlist = [...listList[userPickList.value]]
+            wordlist = [...fullWordlist[userPickList.value].words]
             populateGameBoard(wordlist)
         }
     } else if (correctBool) {
