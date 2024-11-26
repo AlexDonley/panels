@@ -52,5 +52,221 @@
         "sentences": [
             "I see a", "looking at me"
         ]
+    },
+    {
+        "title": "Phonics - Soft A",
+        "words": [
+            "bad",
+            "mad",
+            "sad",
+            "fan",
+            "man",
+            "ham",
+            "bat",
+            "cat",
+            "fat",
+            "hat"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Soft E",
+        "words": [
+            "leg",
+            "hen",
+            "pen",
+            "ten",
+            "net",
+            "pet",
+            "set",
+            "wet"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Soft I",
+        "words": [
+            "kid",
+            "lid",
+            "dig",
+            "pig",
+            "fin",
+            "win",
+            "kit",
+            "hit"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Soft O",
+        "words": [
+            "job",
+            "mom",
+            "hop",
+            "mop",
+            "top",
+            "dot",
+            "not",
+            "pot",
+            "box",
+            "fox"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Soft U",
+        "words": [
+            "cub",
+            "tub",
+            "bug",
+            "bun",
+            "fun",
+            "sun",
+            "cup",
+            "cut"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Hard A",
+        "words": [
+            "bake",
+            "cake",
+            "game",
+            "name",
+            "base",
+            "case",
+            "hate",
+            "late",
+            "save",
+            "wave"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Hard E",
+        "words": [
+            "eve",
+            "Steve",
+            "here",
+            "Pete",
+            "these"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Hard I",
+        "words": [
+            "hide",
+            "ride",
+            "life",
+            "wife",
+            "bike",
+            "like",
+            "fine",
+            "wine",
+            "bite",
+            "kite"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Hard O",
+        "words": [
+            "Coke",
+            "home",
+            "hope",
+            "rope",
+            "nose",
+            "rose",
+            "note",
+            "vote"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Phonics - Hard U",
+        "words": [
+            "cube",
+            "tube",
+            "June",
+            "use",
+            "cute"
+                ],
+        "sentences": [
+            "The word is"
+        ]
+    },
+    {
+        "title": "Wonder World 1 - 2: Emotions",
+        "words": [
+            "angry",
+            "happy",
+            "sad",
+            "hungry",
+            "thirsty"
+                ],
+        "sentences": [
+            "Are you", "Is he", "Is she"
+        ]
+    },
+    {
+        "title": "Wonder World 1 - 3: Toys",
+        "words": [
+            "a ball",
+            "a car",
+            "a doll",
+            "a kite",
+            "a robot",
+            "a yo-yo"
+                ],
+        "sentences": [
+            "It's a"
+        ]
+    },
+    {
+        "title": "Wonder World 1 - 4: Colors",
+        "words": [
+            "blue",
+            "green",
+            "pink",
+            "purple",
+            "red",
+            "yellow"
+                ],
+        "sentences": [
+            "It's"
+        ]
+    },
+    {
+        "title": "Wonder World 1 - 5: Christmas",
+        "words": [
+            "a Christmas tree",
+            "Santa Claus",
+            "a snowman",
+            "a star",
+            "a stocking"
+                ],
+        "sentences": [
+            "Merry Christmas"            
+        ]
     }
 ]

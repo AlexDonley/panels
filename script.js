@@ -6,6 +6,7 @@ const micIcon = document.getElementById('micIcon')
 const teamBar = document.getElementById('teamBar')
 const scoreKeep = document.getElementById('scoreKeep')
 const suggestBox = document.getElementById('suggestBox')
+const vocabQueue = document.getElementById('vocabQueue')
 
 const userPickTeams = document.getElementById('userPickTeams')
 const userPickGrid = document.getElementById('userPickGrid')
@@ -26,6 +27,7 @@ let wordlist = []
 let boardQueue = []
 let unspoken = []
 
+let listIndeces = []
 let suggestedSentences = []
 let sentencePicker = 0
 
@@ -107,6 +109,7 @@ function populateGameBoard(arr) {
 }
 
 function populateWordOptions() {
+       
     userPickList.innerHTML = ''
 
     for (let i=0; i<fullWordlist.length; i++) {
@@ -116,6 +119,41 @@ function populateWordOptions() {
 
         userPickList.append(newOption)
     }
+
+    userPickList.setAttribute("onchange", "queueOption(userPickList.value)")
+}
+
+function queueOption(n) {
+    if (!listIndeces.includes(n)) {
+        listIndeces.push(n)
+        
+        wrapDiv = document.createElement('div')
+        wrapDiv.classList.add('queue-item')
+        
+        newDiv = document.createElement('div')
+        newDiv.innerText = fullWordlist[n].title
+        newDiv.value = n
+    
+        deleteBtn = document.createElement('button')
+        deleteBtn.innerText = "X"
+        deleteBtn.setAttribute("onclick", "dequeueOption("+ vocabQueue.children.length +")")
+    
+        wrapDiv.append(newDiv)
+        wrapDiv.append(deleteBtn)
+        vocabQueue.append(wrapDiv)
+    }
+}
+
+function dequeueOption(n) {
+    vocabQueue.children[n].remove()
+    listIndeces.splice(n, 1)
+
+    // if (listIndeces.includes(String(n))) {
+    //     thisIndex = listIndeces.indexOf(String(n))
+
+    //     listIndeces.splice(thisIndex, 1)
+    //     console.log(thisIndex, listIndeces)
+    // }
 }
 
 function shuffle(arr){
@@ -405,22 +443,28 @@ function renewSquares(arr) {
 }
 
 function startRound() {
-
-    wordlist = [...fullWordlist[userPickList.value].words]
-    suggestedSentences = fullWordlist[userPickList.value].sentences
-
-    teamCount = userPickTeams.value
-    boardWidth = userPickGrid.value
-    boardHeight = userPickGrid.value
-
-    console.log(teamCount, boardWidth, boardHeight)
-
-    populateGameBoard(wordlist)
-
-    populateTeams(teamCount)
-    nextTeam()
-
-    setSuggestedSentence(1)
-
-    optionsMenu.style.display = "none"
+    if (listIndeces.length > 0) {
+        wordlist = []
+        suggestedSentences = []
+        
+        listIndeces.forEach(index => {
+            wordlist = wordlist.concat(fullWordlist[index].words)
+            suggestedSentences = suggestedSentences.concat(fullWordlist[index].sentences)
+        })
+    
+        teamCount = userPickTeams.value
+        boardWidth = userPickGrid.value
+        boardHeight = userPickGrid.value
+    
+        console.log(teamCount, boardWidth, boardHeight)
+    
+        populateGameBoard(wordlist)
+    
+        populateTeams(teamCount)
+        nextTeam()
+    
+        setSuggestedSentence(0)
+    
+        optionsMenu.style.display = "none"
+    }
 }
