@@ -1,6 +1,6 @@
 [
     {
-        "title": "Halloween",
+        "title": "Halloween I",
         "words": [
             "superhero", "monster", "princess", "pirate",
             "astronaut", "what about you", "think", "like",
@@ -9,6 +9,29 @@
                 ],
         "sentences": [
             "You can be a"
+        ]
+    },
+    {
+        "title": "Christmas I",
+        "words": [
+            "Christmas", "great", "family", "friends",
+            "present", "tree", "house", "lights",
+            "Santa Claus", "pretty", "spend time", "decorate"
+                ],
+        "sentences": [
+            "is so much fun"
+        ]
+    },
+    {
+        "title": "Christmas II",
+        "words": [
+            "red", "suit", "kid", "good",
+            "special", "food", "dinner", "ham",
+            "cookies", "eggnog", "super", "always",
+            "Merry Christmas"
+                ],
+        "sentences": [
+            "We like"
         ]
     },
     {
@@ -21,6 +44,36 @@
                 ],
         "sentences": [
             "I have", "Do you have", "Does she have", "Does he have"
+        ]
+    },
+    {
+        "title": "Color Zoo - Animals",
+        "words": [
+            "tiger", "mouse", "fox", "ox", "monkey", 
+            "deer", "lion", "goat", "snake"
+                ],
+        "sentences": [
+            "There's a", "I see a"
+        ]
+    },
+    {
+        "title": "Color Zoo - Shapes",
+        "words": [
+            "circle", "square", "triangle", "rectangle", "oval", 
+            "heart", "diamond", "octagon", "hexagon"
+                ],
+        "sentences": [
+            "There's a", "I see a"
+        ]
+    },
+    {
+        "title": "Color Zoo - Colors",
+        "words": [
+            "red", "blue", "green", "orange", "yellow", 
+            "purple", "pink", "black", "white"
+                ],
+        "sentences": [
+            "There's a", "I see a"
         ]
     },
     {
@@ -51,6 +104,125 @@
                 ],
         "sentences": [
             "I see a", "looking at me"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U1L1",
+        "words": [
+            "police officer", "mail carrier", "doctor",
+            "farmer", "baker", "toy maker"
+                ],
+        "sentences": [
+            "He's a", "She's a", "They're"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U1L2",
+        "words": [
+            "teacher", "carpenter", "firefighter",
+            "pilot", "dentist", "nurse"
+                ],
+        "sentences": [
+            "Is he a", "Is she a", "Are they"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U1L3",
+        "words": [
+            "kind", "mean", "generous", "greedy",
+            "brave", "cowardly", "hard-working", "lazy"
+                ],
+        "sentences": [
+            "He's", "She's", "They're"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U2L1",
+        "words": [
+            "mop", "bucket", "dustpan",
+            "broom", "trash can", "sponge"
+                ],
+        "sentences": [
+            "I need a", "He needs a", "She needs a"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U2L2",
+        "words": [
+            "above", "next to",
+            "in front of", "between"
+                ],
+        "sentences": [
+            "Is the", "Are the"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U2L3",
+        "words": [
+            "sweep the floor", "mop the floor", "pick up the trash",
+            "empty the trash", "wash the dishes", "water the plants"
+                ],
+        "sentences": [
+            "Can you"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U3L1",
+        "words": [
+            "monitor", "keyboard", "mouse",
+            "flash drive", "webcam", "speakers"
+                ],
+        "sentences": [
+            "There is a", "There are"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U3L2",
+        "words": [
+            "pencil case", "notebook", "pencil sharpener",
+            "ruler", "colored pencil", "marker"
+                ],
+        "sentences": [
+            "Is there a", "Are there"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U3L3",
+        "words": [
+            "sunny", "cloudy", "windy",
+            "rainy", "foggy", "snowy"
+                ],
+        "sentences": [
+            "It's", "How's the weather? It's"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U4L1",
+        "words": [
+            "cute", "ugly", "expensive",
+            "cheap", "new", "cheap"
+                ],
+        "sentences": [
+            "Is this", "Is that", "Are these", "Are those"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U4L2",
+        "words": [
+            "20", "30", "40", "50",
+            "60", "70", "80", "90"
+                ],
+        "sentences": [
+            "plus", "minus", "equals"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U4L3",
+        "words": [
+            "one dollar", "ten dollars", "one hundred dollars"
+                ],
+        "sentences": [
+            "It's", "They're"
         ]
     },
     {
