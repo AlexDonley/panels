@@ -232,7 +232,7 @@ function checkBoard(str, team){
     }
 
     for (let i = 0; i < totalTiles; i++) {
-        if (str.includes(boardQueue[i]) && unspoken.includes(boardQueue[i])) {
+        if (str.includes(boardQueue[i].toLowerCase()) && unspoken.includes(boardQueue[i].toLowerCase())) {
             // || markWord == boardQueue[i]
             gameBoard.childNodes[i].classList.add(teamColors[team - 1])
             teamSquares[i] = team
