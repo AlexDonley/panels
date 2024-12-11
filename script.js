@@ -129,6 +129,7 @@ function queueOption(n) {
         
         wrapDiv = document.createElement('div')
         wrapDiv.classList.add('queue-item')
+        wrapDiv.id = n + "_queued"
         
         newDiv = document.createElement('div')
         newDiv.innerText = fullWordlist[n].title
@@ -136,7 +137,7 @@ function queueOption(n) {
     
         deleteBtn = document.createElement('button')
         deleteBtn.innerText = "X"
-        deleteBtn.setAttribute("onclick", "dequeueOption("+ vocabQueue.children.length +")")
+        deleteBtn.setAttribute("onclick", "dequeueOption("+ n +")")
     
         wrapDiv.append(newDiv)
         wrapDiv.append(deleteBtn)
@@ -145,15 +146,15 @@ function queueOption(n) {
 }
 
 function dequeueOption(n) {
-    vocabQueue.children[n].remove()
-    listIndeces.splice(n, 1)
+    const thisOption = document.getElementById(n + "_queued")
+    thisOption.remove()
 
-    // if (listIndeces.includes(String(n))) {
-    //     thisIndex = listIndeces.indexOf(String(n))
+    if (listIndeces.includes(String(n))) {
+        thisIndex = listIndeces.indexOf(String(n))
 
-    //     listIndeces.splice(thisIndex, 1)
-    //     console.log(thisIndex, listIndeces)
-    // }
+        listIndeces.splice(thisIndex, 1)
+        console.log(thisIndex, listIndeces)
+    }
 }
 
 function shuffle(arr){
@@ -232,7 +233,7 @@ function checkBoard(str, team){
     }
 
     for (let i = 0; i < totalTiles; i++) {
-        if (str.includes(boardQueue[i].toLowerCase()) && unspoken.includes(boardQueue[i].toLowerCase())) {
+        if (str.toLowerCase().includes(boardQueue[i]) && unspoken.includes(boardQueue[i])) {
             // || markWord == boardQueue[i]
             gameBoard.childNodes[i].classList.add(teamColors[team - 1])
             teamSquares[i] = team
