@@ -20,7 +20,7 @@
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"/>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script type="module" src="script.js" defer></script>
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <title>Panels</title>
 </head>
@@ -28,11 +28,11 @@
     <div class="menu shiny" id="optionsMenu">
         <div>
             <label for="userPickTeams">Number of Teams:</label>
-            <input type="number" min=1 max=4 value="2" id="userPickTeams"/>
+            <input type="number" min=1 max=4 value=1 id="userPickTeams"/>
         </div>
         <div>
             <label for="userPickGrid">Square Grid:</label>
-            <input type="number" min=3 max=5 value="4" id="userPickGrid"/>
+            <input type="number" min=3 max=5 value=4 id="userPickGrid"/>
         </div>
         <label for="userPickList">Add vocab from list:</label>
         <div class="two-cols">
@@ -45,19 +45,15 @@
             </div>
         </div>
 
-        <!-- <div>Words:</div>
-        <textarea id="userPickWords"/></textarea> -->
-        <button class="go-btn shiny" onclick="startRound()">GO</button>
+        <button class="go-btn shiny" id="goBtn">GO</button>
     </div>
     <div class="side-bar">
-        <!-- <div class="user-input">
-            <textarea class="user-text">enter text here</textarea>
-        </div> -->
-        <div class="suggest-box shiny" id="suggestBox" onclick="nextSentence()">
+
+        <div class="suggest-box shiny" id="suggestBox">
 
         </div>
         <div class="speech-bubble triangle shiny">
-            <button class="toggle-speech-button" id="micButton" onclick="toggleRec()">
+            <button class="toggle-speech-button" id="micButton">
                 <span class="material-symbols-outlined">
                     mic
                 </span>

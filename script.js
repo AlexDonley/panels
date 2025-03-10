@@ -1,10 +1,17 @@
+import { myShuffle } from './js/shuffle.js'
+import {
+    targetLang, speechRec, 
+    setLanguage, startRecLoop, stopRecLoop
+} from './js/speech-rec.js'
+
 const gameBoard = document.getElementById('gameBoard')
 const speechLog = document.getElementById('speechLog')
 const speechNow = document.getElementById('speechNow')
-const micButton = document.getElementById('micButton')
-const micIcon = document.getElementById('micIcon')
-const teamBar = document.getElementById('teamBar')
-const scoreKeep = document.getElementById('scoreKeep')
+const goBtn     = document.querySelector('#goBtn')
+const micButton = document.querySelector('#micButton')
+const micIcon   = document.querySelector('#micIcon')
+const teamBar   = document.querySelector('#teamBar')
+const scoreKeep = document.querySelector('#scoreKeep')
 const suggestBox = document.getElementById('suggestBox')
 const vocabQueue = document.getElementById('vocabQueue')
 
@@ -12,6 +19,10 @@ const userPickTeams = document.getElementById('userPickTeams')
 const userPickGrid = document.getElementById('userPickGrid')
 const userPickList = document.getElementById('userPickList')
 const optionsMenu = document.getElementById('optionsMenu')
+
+goBtn.addEventListener('click', startRound)
+micButton.addEventListener('click', toggleRec)
+suggestBox.addEventListener('click', nextSentence)
 
 const smallWin = new Audio("./sfx/success.mp3")
 const bigWin = new Audio("./sfx/copyability.mp3")
@@ -62,9 +73,10 @@ function loadJSON(filename){
         fullWordlist = data;
 
         populateWordOptions()
+        queueOption(0)
         //example = fullWordlist.findIndex(item => item.title === "Halloween")
     })
-    .catch(error => console.log('ERROR'))
+    .catch(error => console.log(error))
 }
 
 loadJSON('wordlist');
@@ -84,7 +96,7 @@ function populateGameBoard(arr) {
     console.log(iterations)
 
     for (let n=0; n < iterations; n++) {
-        shuffledArr = shuffle(arr)
+        const shuffledArr = myShuffle(arr)
         boardQueue = boardQueue.concat(shuffledArr)
     }
 
@@ -93,10 +105,10 @@ function populateGameBoard(arr) {
         //     unspoken.push(boardQueue[n])
         // }
         
-        newWord = document.createElement('div')
+        const newWord = document.createElement('div')
         newWord.classList += 'one-word shiny'
 
-        wordWrap = document.createElement('div')
+        const wordWrap = document.createElement('div')
         wordWrap.innerText = boardQueue[n]
         wordWrap.classList += 'word-wrap'
         wordWrap.setAttribute('id', n + '_word')
@@ -120,88 +132,86 @@ function populateWordOptions() {
         userPickList.append(newOption)
     }
 
-    userPickList.setAttribute("onchange", "queueOption(userPickList.value)")
+    userPickList.addEventListener("change", queueOption())
 }
 
-function queueOption(n) {
-    if (!listIndeces.includes(n)) {
-        listIndeces.push(n)
+function queueOption() {
+
+    return function executeOnEvent(e) {
+        const n = e.target.value
         
-        wrapDiv = document.createElement('div')
-        wrapDiv.classList.add('queue-item')
-        wrapDiv.id = n + "_queued"
+        if (!listIndeces.includes(n)) {
+            listIndeces.push(n)
+            
+            const wrapDiv = document.createElement('div')
+            wrapDiv.classList.add('queue-item')
+            wrapDiv.id = n + "_queued"
+            
+            const newDiv = document.createElement('div')
+            newDiv.innerText = fullWordlist[n].title
+            newDiv.value = n
         
-        newDiv = document.createElement('div')
-        newDiv.innerText = fullWordlist[n].title
-        newDiv.value = n
-    
-        deleteBtn = document.createElement('button')
-        deleteBtn.innerText = "X"
-        deleteBtn.setAttribute("onclick", "dequeueOption("+ n +")")
-    
-        wrapDiv.append(newDiv)
-        wrapDiv.append(deleteBtn)
-        vocabQueue.append(wrapDiv)
+            const deleteBtn = document.createElement('button')
+            deleteBtn.id = "delete_" + n
+            deleteBtn.innerText = "X"
+            deleteBtn.addEventListener("click", dequeueOption())
+        
+            wrapDiv.append(newDiv)
+            wrapDiv.append(deleteBtn)
+            vocabQueue.append(wrapDiv)
+        }
     }
 }
 
-function dequeueOption(n) {
-    const thisOption = document.getElementById(n + "_queued")
-    thisOption.remove()
+function dequeueOption() {
 
-    if (listIndeces.includes(String(n))) {
-        thisIndex = listIndeces.indexOf(String(n))
+    return function executeOnEvent(e) {
+        const n = e.target.id.substring(7);
 
-        listIndeces.splice(thisIndex, 1)
-        console.log(thisIndex, listIndeces)
+        const thisOption = document.getElementById(n + "_queued")
+        thisOption.remove()
+    
+        if (listIndeces.includes(String(n))) {
+            const thisIndex = listIndeces.indexOf(String(n))
+    
+            listIndeces.splice(thisIndex, 1)
+            console.log(thisIndex, listIndeces)
+        }
     }
 }
 
-function shuffle(arr){
-    let unshuffled = arr;
-    let shuffled = [];
-  
-    unshuffled.forEach(word =>{
-        randomPos = Math.round(Math.random() * shuffled.length);
-  
-        shuffled.splice(randomPos, 0, word);
-    })
-    
-    // console.log(shuffled);
-    return shuffled;
+function toggleRec() {
+    if (listenBool) {
+        listenBool = false
+        micIcon.innerText = "radio_button_unchecked"
+        micButton.classList.remove('on')
+        stopRecLoop()
+    } else {
+        listenBool = true
+        micIcon.innerText = "radio_button_checked"
+        micButton.classList.add('on')
+        startRecLoop(1, 1, 0, targetLang)
+    }
 }
 
-
-// - - - SPEECH RECOGNITION SNIPPET - - - //
-
-window.SpeechRecognition =
-    window.SpeechRecognition || window.webkitSpeechRecognition;
-
-const recognition = new SpeechRecognition();
-recognition.interimResults = true;
-
-function setLanguage(str) {
-    targetLang = str
-    recognition.lang = targetLang
-}
-
-setLanguage('en');
-
-recognition.addEventListener("result", (e) => {
+speechRec.addEventListener("result", (e) => {
+  
     const text = Array.from(e.results)
         .map((result) => result[0])
         .map((result) => result.transcript)
         .join("");
 
-    
-
-    speaklist = text.split(' ')
+    //const speaklist = text.split(' ')
 
     speechNow.innerHTML = ""
     speechNow.innerText = text
 
+    //const utteredWords = genWPStrToArr(text, targetLang)
+
     if (e.results[0].isFinal) {
-        logDiv = document.createElement('div')
+        console.log('Comparing sentences...')
+
+        const logDiv = document.createElement('div')
         logDiv.classList.add("one-log")
         logDiv.classList.add("text-" + teamColors[turn - 1])
         logDiv.innerText = text
@@ -213,20 +223,12 @@ recognition.addEventListener("result", (e) => {
         checkBoard(text, turn)
         nextTeam()
     }
-});
-
-recognition.addEventListener("end", () => {
-    if(listenBool){
-        recognition.start();
-    }
-});
-
-// - - - END OF SPEECH RECOGNITION SNIPPET - - - //
+})
 
 function checkBoard(str, team){
     console.log('checking words');
-    multiplier = 1;
-    markWord = ""
+    let multiplier = 1;
+    let markWord = ""
 
     if (str.toLowerCase().includes(suggestedSentences[sentencePicker].toLowerCase())) {
         multiplier = 2
@@ -255,20 +257,6 @@ function checkBoard(str, team){
     // console.log(unspoken)
 
     checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team, markWord)
-}
-
-function toggleRec() {
-    if (listenBool) {
-        listenBool = false
-        micIcon.innerText = "radio_button_unchecked"
-        micButton.classList.remove('on')
-        recognition.abort()
-    } else {
-        listenBool = true
-        micIcon.innerText = "radio_button_checked"
-        micButton.classList.add('on')
-        recognition.start()
-    }
 }
 
 function nextTeam() {
@@ -308,7 +296,7 @@ function nextSentence() {
 
 function setSuggestedSentence(n) {
 
-    sentWrap = document.createElement('div')
+    const sentWrap = document.createElement('div')
     sentWrap.classList.add('sentence-center')
     sentWrap.innerText = suggestedSentences[n] + "..."
 
@@ -318,7 +306,7 @@ function setSuggestedSentence(n) {
 
 function checkForLineup(arr, w, h, n, team, correctBool) {
     
-    winningLines = []
+    let winningLines = []
 
     // Check rows for a win
     for (let row = 0; row < h; row++) {
@@ -428,10 +416,10 @@ function checkForLineup(arr, w, h, n, team, correctBool) {
 function renewSquares(arr) {
     arr.forEach(value => {
         
-        replacementWord = unspoken[Math.floor(Math.random() * unspoken.length)]
+        const replacementWord = unspoken[Math.floor(Math.random() * unspoken.length)]
         boardQueue[value] = replacementWord
 
-        tileText = document.getElementById(value + "_word")
+        const tileText = document.getElementById(value + "_word")
         tileText.innerText = replacementWord
 
         for (let i=0; i<teamCount; i++) {
