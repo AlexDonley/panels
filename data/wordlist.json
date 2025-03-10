@@ -228,6 +228,169 @@
         ]
     },
     {
+        "title": "Hip Hip Hooray 2 - U5L1",
+        "words": [
+            "reading", "writing", "painting",
+            "thinking", "eating", "sleeping"
+                ],
+        "sentences": [
+            "I'm", "He's", "She's", "They're"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U5L2",
+        "words": [
+            "watching TV", "surfing the web", "listening to music",
+            "playing a video game", "playing a board game", "studying for an exam"
+                ],
+        "sentences": [
+            "Are you", "Is he", "Is she", "Are they"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U5L3",
+        "words": [
+            "bedroom", "living room", "dining room",
+            "kitchen", "bathroom", "balcony"
+                ],
+        "sentences": [
+            "This is the", "We're in the"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U6L1",
+        "words": [
+            "a baseball",
+            "a basketball",
+            "a jump rope",
+            "a skateboard",
+            "a racket",
+            "in-line skates"
+                ],
+        "sentences": [
+            "I have", "He has", "She has", "They have"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U6L2",
+        "words": [
+            "a puzzle",
+            "a board game",
+            "a dollhouse",
+            "marbles",
+            "trading cards",
+            "building blocks"
+                ],
+        "sentences": [
+            "Do you have", "Does he have", "Does she have"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U6L3",
+        "words": [
+            "dress",
+            "skirt",
+            "jacket",
+            "shirt",
+            "pants",
+            "shorts",
+            "shoes",
+            "slippers"
+                ],
+        "sentences": [
+            "I'm wearing", "He's wearing", "She's wearing", "They're wearing"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U7L1",
+        "words": [
+            "my",
+            "your",
+            "his",
+            "her",
+            "their",
+            "our"
+                ],
+        "sentences": [
+            "It's", "They're"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U7L2",
+        "words": [
+            "head",
+            "eye",
+            "nose",
+            "ear",
+            "mouth",
+            "arm",
+            "hand",
+            "leg",
+            "foot"
+                ],
+        "sentences": [
+            "My", "hurts"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U7L3",
+        "words": [
+            "a cold",
+            "a headache",
+            "a toothache",
+            "a stomachache",
+            "a sore throat",
+            "a nosebleed"
+                ],
+        "sentences": [
+            "I have", "She has", "He has"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U8L1",
+        "words": [
+            "Help!",
+            "Stop!",
+            "Watch out!",
+            "Don't push!",
+            "Don't touch that!",
+            "Don't cut in line!"
+                ],
+        "sentences": [
+            "n/a"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U8L2",
+        "words": [
+            "English class",
+            "math class",
+            "music class",
+            "art class",
+            "geography class",
+            "computer class",
+            "science class",
+            "PE class"
+                ],
+        "sentences": [
+            "I'm going to", "He's going to", "She's going to", "They're going to"
+        ]
+    },
+    {
+        "title": "Hip Hip Hooray 2 - U8L3",
+        "words": [
+            "dance class",
+            "band practice",
+            "choir practice",
+            "scout meeting",
+            "science fair",
+            "volleyball game"
+                ],
+        "sentences": [
+            "Are you going to", "Is he going to", "Is she going to", "Are they going to"
+        ]
+    },
+    {
         "title": "Phonics - Soft A",
         "words": [
             "bad",
