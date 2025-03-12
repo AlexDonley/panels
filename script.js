@@ -83,9 +83,6 @@ function populateGameBoard(arr) {
     }
 
     for (let n = 0; n < totalTiles; n++) {
-        // if (!unspoken.includes(boardQueue[n])) {
-        //     unspoken.push(boardQueue[n])
-        // }
         
         const newWord = document.createElement('div')
         newWord.classList += 'one-word shiny'
@@ -208,6 +205,10 @@ speechRec.addEventListener("result", (e) => {
         
         checkBoard(text, turn)
         nextTeam()
+
+        if (true) {
+            nextSentence()
+        }
     }
 })
 
@@ -245,8 +246,6 @@ function checkBoard(str, team){
     if (index >= 0) {
         unspoken.splice(index, 1);
     }
-    
-    // console.log(unspoken)
 
     checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team, markWord)
 }
