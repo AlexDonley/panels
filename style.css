@@ -159,6 +159,7 @@ textarea {
     text-align: center;
     font-size: 3vw;
     line-height: 2.6vw;
+    user-select: none;
 }
 
 .toggle-speech-button {

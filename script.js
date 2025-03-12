@@ -3,6 +3,7 @@ import {
     targetLang, speechRec, 
     setLanguage, startRecLoop, stopRecLoop
 } from './js/speech-rec.js'
+import { urlConfigs, writeConfigValues } from './js/url-query.js'
 
 const gameBoard = document.getElementById('gameBoard')
 const speechLog = document.getElementById('speechLog')
@@ -32,8 +33,6 @@ smallWin.volume = 0.45
 bigWin.volume = 0.45
 boardWin.volume = 0.4
 
-const spacing = "1fr "
-
 let wordlist = []
 let boardQueue = []
 let unspoken = []
@@ -46,7 +45,6 @@ const teamColors = ['red', 'blue', 'yellow', 'green']
 let teamSquares = []
 let scoreArr = [0, 0, 0, 0]
 
-let tictac = 3
 let teamCount = 2
 let turn = 1
 let attempt = 0
@@ -59,29 +57,10 @@ let listenBool = false
 
 let fullWordlist
 
-function loadJSON(filename){
-    fetch('./data/' + filename + '.json')
-    .then(res => {
-        if (res.ok) {
-            console.log('SUCCESS');
-        } else {
-            console.log('FAILURE')
-        }
-        return res.json()
-    })
-    .then(data => {
-        fullWordlist = data;
-
-        populateWordOptions()
-        queueOption(0)
-        //example = fullWordlist.findIndex(item => item.title === "Halloween")
-    })
-    .catch(error => console.log(error))
-}
-
-loadJSON('wordlist');
 
 function populateGameBoard(arr) {
+    const spacing = "1fr "
+    
     gameBoard.innerHTML = ''
     boardQueue = []
     unspoken = arr
@@ -132,34 +111,38 @@ function populateWordOptions() {
         userPickList.append(newOption)
     }
 
-    userPickList.addEventListener("change", queueOption())
+    userPickList.addEventListener("change", clickQueue())
 }
 
-function queueOption() {
+function clickQueue() {
 
     return function executeOnEvent(e) {
-        const n = e.target.value
         
-        if (!listIndeces.includes(n)) {
-            listIndeces.push(n)
-            
-            const wrapDiv = document.createElement('div')
-            wrapDiv.classList.add('queue-item')
-            wrapDiv.id = n + "_queued"
-            
-            const newDiv = document.createElement('div')
-            newDiv.innerText = fullWordlist[n].title
-            newDiv.value = n
+        var n = e.target.value
+        queueOption(n)
+    }
+}
+
+function queueOption(n) {
+    if (!listIndeces.includes(n)) {
+        listIndeces.push(n)
         
-            const deleteBtn = document.createElement('button')
-            deleteBtn.id = "delete_" + n
-            deleteBtn.innerText = "X"
-            deleteBtn.addEventListener("click", dequeueOption())
+        const wrapDiv = document.createElement('div')
+        wrapDiv.classList.add('queue-item')
+        wrapDiv.id = n + "_queued"
         
-            wrapDiv.append(newDiv)
-            wrapDiv.append(deleteBtn)
-            vocabQueue.append(wrapDiv)
-        }
+        const newDiv = document.createElement('div')
+        newDiv.innerText = fullWordlist[n].title
+        newDiv.value = n
+    
+        const deleteBtn = document.createElement('button')
+        deleteBtn.id = "delete_" + n
+        deleteBtn.innerText = "X"
+        deleteBtn.addEventListener("click", dequeueOption())
+    
+        wrapDiv.append(newDiv)
+        wrapDiv.append(deleteBtn)
+        vocabQueue.append(wrapDiv)
     }
 }
 
@@ -457,3 +440,38 @@ function startRound() {
         optionsMenu.style.display = "none"
     }
 }
+
+writeConfigValues(userPickTeams, userPickGrid)
+
+async function loadJSON(filename){
+    try {
+        let response = await fetch('./data/' + filename + '.json');
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        let data = await response.json();
+        processWordlist(data)
+        console.log("Data:", data);
+    } catch (error) {
+        console.error("Error:", error);
+    }
+}
+
+function processWordlist(data) {
+    fullWordlist = data
+    populateWordOptions()
+    if (urlConfigs) {
+        if (urlConfigs.vocabs) {
+            urlConfigs.vocabs.split('_').forEach(val => {
+                console.log(fullWordlist[val].title)
+                queueOption(val)
+            })
+        }
+    
+        if (urlConfigs.gonow == 'true') {
+            startRound()
+        }
+    }
+}
+
+loadJSON('wordlist')
