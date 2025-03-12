@@ -63,7 +63,10 @@ function populateGameBoard(arr) {
     
     gameBoard.innerHTML = ''
     boardQueue = []
-    unspoken = arr
+
+    arr.forEach(word => {
+        unspoken.push(word.toLowerCase())
+    })
     teamSquares = []
     
     gameBoard.style.gridTemplateRows = spacing.repeat(boardHeight)
@@ -218,8 +221,14 @@ function checkBoard(str, team){
     }
 
     for (let i = 0; i < totalTiles; i++) {
-        if (str.toLowerCase().includes(boardQueue[i]) && unspoken.includes(boardQueue[i])) {
-            // || markWord == boardQueue[i]
+        
+        const lcWord = boardQueue[i].toLowerCase()
+        console.log(str.toLowerCase(), lcWord, str.toLowerCase().includes(lcWord))
+        
+        if (
+            str.toLowerCase().includes(lcWord) 
+            && unspoken.includes(lcWord)
+        ) {
             gameBoard.childNodes[i].classList.add(teamColors[team - 1])
             teamSquares[i] = team
             
