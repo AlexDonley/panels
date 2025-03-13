@@ -47,7 +47,6 @@ let scoreArr = [0, 0, 0, 0]
 
 let teamCount = 2
 let turn = 1
-let attempt = 0
 
 let boardWidth  = 4
 let boardHeight = 4
@@ -57,6 +56,7 @@ let listenBool = false
 
 let fullWordlist
 
+setLanguage('en')
 
 function populateGameBoard(arr) {
     const spacing = "1fr "
