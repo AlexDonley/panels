@@ -6,6 +6,7 @@ import {
 import { 
     urlConfigs, writeConfigValues 
 } from './js/url-query.js'
+import { genWPStrToArr, checkArrOverlap } from './js/word-process.js'
 
 const gameBoard     = document.querySelector('#gameBoard')
 const speechLog     = document.querySelector('#speechLog')
@@ -224,12 +225,15 @@ function checkBoard(str, team){
 
     for (let i = 0; i < totalTiles; i++) {
         
-        const lcWord = boardQueue[i].toLowerCase()
-        console.log(str.toLowerCase(), lcWord, str.toLowerCase().includes(lcWord))
+        const lowerTarg = boardQueue[i].toLowerCase();
+
+        const thisTarg = genWPStrToArr(lowerTarg);
+        const thisUtter = genWPStrToArr(str);
         
         if (
-            str.toLowerCase().includes(lcWord) 
-            && unspoken.includes(lcWord)
+            //str.toLowerCase().includes(lowerTarg) 
+            checkArrOverlap(thisTarg, thisUtter)
+            && unspoken.includes(lowerTarg)
         ) {
             gameBoard.childNodes[i].classList.add(teamColors[team - 1])
             teamSquares[i] = team
