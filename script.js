@@ -3,23 +3,24 @@ import {
     targetLang, speechRec, 
     setLanguage, startRecLoop, stopRecLoop
 } from './js/speech-rec.js'
-import { urlConfigs, writeConfigValues } from './js/url-query.js'
+import { 
+    urlConfigs, writeConfigValues 
+} from './js/url-query.js'
 
-const gameBoard = document.getElementById('gameBoard')
-const speechLog = document.getElementById('speechLog')
-const speechNow = document.getElementById('speechNow')
-const goBtn     = document.querySelector('#goBtn')
-const micButton = document.querySelector('#micButton')
-const micIcon   = document.querySelector('#micIcon')
-const teamBar   = document.querySelector('#teamBar')
-const scoreKeep = document.querySelector('#scoreKeep')
-const suggestBox = document.getElementById('suggestBox')
-const vocabQueue = document.getElementById('vocabQueue')
-
-const userPickTeams = document.getElementById('userPickTeams')
-const userPickGrid = document.getElementById('userPickGrid')
-const userPickList = document.getElementById('userPickList')
-const optionsMenu = document.getElementById('optionsMenu')
+const gameBoard     = document.querySelector('#gameBoard')
+const speechLog     = document.querySelector('#speechLog')
+const speechNow     = document.querySelector('#speechNow')
+const goBtn         = document.querySelector('#goBtn')
+const micButton     = document.querySelector('#micButton')
+const micIcon       = document.querySelector('#micIcon')
+const teamBar       = document.querySelector('#teamBar')
+const scoreKeep     = document.querySelector('#scoreKeep')
+const suggestBox    = document.querySelector('#suggestBox')
+const vocabQueue    = document.querySelector('#vocabQueue')
+const userPickTeams = document.querySelector('#userPickTeams')
+const userPickGrid  = document.querySelector('#userPickGrid')
+const userPickList  = document.querySelector('#userPickList')
+const optionsMenu   = document.querySelector('#optionsMenu')
 
 goBtn.addEventListener('click', startRound)
 micButton.addEventListener('click', toggleRec)
@@ -56,7 +57,7 @@ let listenBool = false
 
 let fullWordlist
 
-setLanguage('en')
+
 
 function populateGameBoard(arr) {
     const spacing = "1fr "
@@ -163,6 +164,10 @@ function dequeueOption() {
     }
 }
 
+// Speech rec section
+
+setLanguage('en')
+
 function toggleRec() {
     if (listenBool) {
         listenBool = false
@@ -205,17 +210,13 @@ speechRec.addEventListener("result", (e) => {
         
         checkBoard(text, turn)
         nextTeam()
-
-        if (true) {
-            nextSentence()
-        }
     }
 })
 
 function checkBoard(str, team){
     console.log('checking words');
     let multiplier = 1;
-    let markWord = ""
+    let markWord = null
 
     if (str.toLowerCase().includes(suggestedSentences[sentencePicker].toLowerCase())) {
         multiplier = 2
@@ -245,6 +246,10 @@ function checkBoard(str, team){
     
     if (index >= 0) {
         unspoken.splice(index, 1);
+    }
+
+    if (markWord) {
+        nextSentence()
     }
 
     checkForLineup(teamSquares, boardWidth, boardHeight, Math.min(boardWidth, boardHeight), team, markWord)
@@ -378,6 +383,7 @@ function checkForLineup(arr, w, h, n, team, correctBool) {
         if (unspoken.length > 0) {
             renewSquares(winningLines)
         } else {
+            // reset the board and arrays            
             boardWin.play()
             
             wordlist = [...fullWordlist[userPickList.value].words]
@@ -385,7 +391,7 @@ function checkForLineup(arr, w, h, n, team, correctBool) {
         }
     } else if (correctBool) {
         smallWin.play()
-    } 
+    }
 
     if (!teamSquares.includes(null)) {
         boardWin.play()
