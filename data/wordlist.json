@@ -605,5 +605,49 @@
         "sentences": [
             "Merry Christmas"            
         ]
+    },
+    {
+        "title": "Big Green Monster - Face",
+        "words": [
+            "face",
+            "eyes",
+            "nose",
+            "ears",
+            "mouth",
+            "teeth",
+            "hair"
+                ],
+        "sentences": [
+            "Big Green Monster has"            
+        ]
+    },
+    {
+        "title": "Big Green Monster - Adj",
+        "words": [
+            "big",
+            "sharp",
+            "long",
+            "scary",
+            "squiggly",
+            "scraggly",
+            "little"
+                ],
+        "sentences": [
+            "Big Green Monster has"            
+        ]
+    },
+    {
+        "title": "Big Green Monster - Color",
+        "words": [
+            "yellow",
+            "blue",
+            "green",
+            "purple",
+            "red",
+            "white"
+                ],
+        "sentences": [
+            "Big Green Monster has"            
+        ]
     }
 ]
