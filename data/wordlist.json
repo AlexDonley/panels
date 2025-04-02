@@ -35,6 +35,28 @@
         ]
     },
     {
+        "title": "Children's Day I",
+        "words": [
+            "heard", "children", "just for", "whole",
+            "off from school", "awesome", "park", "game",
+            "museum", "zoo", "toy", "kids"
+        ],
+        "sentences": [
+            "I", "you", "we"
+        ]
+    },    
+    {
+        "title": "Children's Day II",
+        "words": [
+            "actually", "country", "really", "why not",
+            "mom and dad", "told", "because", "every day",
+            "never", "thought", "enjoy", "time off"                
+        ],
+        "sentences": [
+            "I", "you", "we"
+        ]
+    },
+    {
         "title": "Silverstein - Sick",
         "words": [
             "the measles", "the mumps", "a gash", "a rash", 
