@@ -129,6 +129,69 @@
         ]
     },
     {
+        "title": "Polar Bear - Animals",
+        "words": [
+            "polar bear", "lion", "hippo",  
+            "flamingo", "zebra", "boa", "elephant", 
+            "leopard", "peacock", "walrus"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },
+        {
+        "title": "Polar Bear - Sounds",
+        "words": [
+            "growling", "roaring", "snorting",  
+            "fluting", "hissing", "trumpeting", 
+            "snarling", "yelping", "bellowing"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },
+    {
+        "title": "Polar Bear - Phonics 1",
+        "words": [
+            "fling", "ring", "ting", "king",
+            "bing", "sing", "ping", "wing"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },
+    {
+        "title": "Polar Bear - Phonics 2",
+        "words": [
+            "now", "cow", "how", "brow",
+            "owl", "cowl", "growl", "prowl"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },    
+    {
+        "title": "Polar Bear - Phonics 3",
+        "words": [
+            "snore", "snare", "sort", "score",
+            "scar", "roar", "soar", "Carl"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },    
+    {
+        "title": "Polar Bear - Phonics 4",
+        "words": [
+            "hiss", "kiss", "diss", 
+            "bump", "dump", "trump", 
+            "yelp", "help", "kelp"
+                ],
+        "sentences": [
+            "I hear a", "in my ear"
+        ]
+    },
+    {
         "title": "Hip Hip Hooray 2 - U1L1",
         "words": [
             "police officer", "mail carrier", "doctor",
