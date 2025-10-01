@@ -57,6 +57,28 @@
         ]
     },
     {
+        "title": "Dragon Boat Festival I",
+        "words": [
+            "today", "dragon", "boat", "festival",
+            "watch", "race", "sticky", "rice",
+            "dumplings", "wrapped", "leaves"              
+        ],
+        "sentences": [
+            "The next word is"
+        ]
+    },
+        {
+        "title": "Dragon Boat Festival II",
+        "words": [
+            "ingredients", "peanuts", "shrimp", "pork",
+            "delicious", "remember", "famous", "poet",
+            "honor", "interesting", "river"               
+        ],
+        "sentences": [
+            "The next word is"
+        ]
+    },
+    {
         "title": "Silverstein - Sick",
         "words": [
             "the measles", "the mumps", "a gash", "a rash", 
@@ -139,7 +161,7 @@
             "I hear a", "in my ear"
         ]
     },
-        {
+    {
         "title": "Polar Bear - Sounds",
         "words": [
             "growling", "roaring", "snorting",  
@@ -444,7 +466,7 @@
             "a cold",
             "a headache",
             "a toothache",
-            "a stomach ache",
+            "a stomachache",
             "a sore throat",
             "a nosebleed"
                 ],
